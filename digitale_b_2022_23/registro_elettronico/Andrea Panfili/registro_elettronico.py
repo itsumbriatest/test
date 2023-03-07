@@ -1,23 +1,32 @@
 class Classe:
-    def __init__(self):
-        andrea = Studente ("Andrea", "Panfili")
-        massi = Studente ("Massi", "Muzi")
-        self.lista_studenti_classe1 = [andrea, massi]
+    def __init__(self, grado, sezione, materie, studenti, voti):
+        self.grado = grado
+        self.sezione = sezione
+        self.materie = materie
+        self.studenti = studenti
+        self.voti = voti
+class Registro: 
+        def __init__(self, classi):
+            self.classi = classi
+             
+            s1 = Studente ("Andrea", "Panfili")
+            s2 = Studente ("Massi", "Muzi")
+            self.lista_studenti_classe1 = [andrea, massi]
 
-        italiano = Materia ("Italiano")
-        matematica = Materia ("Matematica")
-        self.lista_materie_classe1 = [italiano, matematica]
+            italiano = Materia ("Italiano")
+            matematica = Materia ("Matematica")
+            self.lista_materie_classe1 = [italiano, matematica]
 
-        v1 = Voto (7, andrea, italiano, "17/2/2023")
-        v2 = Voto (4, andrea, matematica, "11/2/2023")
-        v3 = Voto (9, massi, italiano, "17/2/2023")
-        v4 = Voto (6, massi, matematica, "11/2/2023")
-        self.lista_voti_classe1 = [v1, v2, v3, v4]
+            v1 = Voto (7, s1, italiano, "17/2/2023")
+            v2 = Voto (4, s1, matematica, "11/2/2023")
+            v3 = Voto (9, s2, italiano, "17/2/2023")
+            v4 = Voto (6, s2, matematica, "11/2/2023")
+            self.lista_voti_classe1 = [v1, v2, v3, v4]
         
       
         
-        #lorenzo = Studente ("Lorenzo", "Scianca")
-        #tommaso = Studente ("Tommaso", "Sabbi")
+            s3 = Studente ("Lorenzo", "Scianca")
+            s4 = Studente ("Tommaso", "Sabbi")
         #self.lista_studenti_classe2 = [lorenzo, tommaso]
         #
         #storia = Materia ("Storia")
@@ -31,22 +40,22 @@ class Classe:
 
 
 
-    def AggiungiVoto(self):
-        for i in range(len(self.lista_studenti_classe1)):
-            print(i, ")", self.lista_studenti_classe1[i])
-        nome_stud = int(input("Di quale studente vuoi inserire il nuovo voto?"))
-        stud = self.lista_materie_classe1[nome_stud]
+        def AggiungiVoto(self):
+            for i in range(len(self.lista_studenti_classe1)):
+                print(i, ")", self.lista_studenti_classe1[i])
+            nome_stud = int(input("Di quale studente vuoi inserire il nuovo voto?"))
+            stud = self.lista_materie_classe1[nome_stud]
 
-        for i in range(len(self.lista_materie_classe1)):
-            print(i, ")", self.lista_materie_classe1[i])
-        nome_mat = int(input("Di quale materia vuoi inserire il nuovo voto?"))
-        mat = self.lista_materie_classe1[nome_mat]
+            for i in range(len(self.lista_materie_classe1)):
+                print(i, ")", self.lista_materie_classe1[i])
+            nome_mat = int(input("Di quale materia vuoi inserire il nuovo voto?"))
+            mat = self.lista_materie_classe1[nome_mat]
 
-        data = input("Inserisci la data del voto: ")
-        punteggio = float(input("Inserire il punteggio del voto: "))
-        voto = Voto(punteggio, stud, mat, data)
+            data = input("Inserisci la data del voto: ")
+            punteggio = float(input("Inserire il punteggio del voto: "))
+            voto = Voto(punteggio, stud, mat, data)
 
-        self.lista_voti_classe1.append(voto)
+            self.lista_voti_classe1.append(voto)
 
 
     
