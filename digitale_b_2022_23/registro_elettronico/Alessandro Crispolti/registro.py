@@ -76,7 +76,5 @@ class Voto:
         self.voto = voto
 
 #Main
-c1 = Classe(1,"A")
-c2 = Classe(2,"A")
-c3 = Classe(3,"A")
-c4 = Classe(4,"A")  
+c = Classe()
+c.registro()
