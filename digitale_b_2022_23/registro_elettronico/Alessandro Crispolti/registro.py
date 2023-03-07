@@ -19,10 +19,6 @@ class Classe:
         self.lista_voti = [voto1, voto2, voto3, voto4]
         self.grado = grado 
         self.sezione = sezione
-        c1 = Classe(1,"A")
-        c2 = Classe(2,"A")
-        c3 = Classe(3,"A")
-        c4 = Classe(4,"A")
 
     def registro(self):
         scelta = 0
@@ -80,5 +76,7 @@ class Voto:
         self.voto = voto
 
 #Main
-c = Classe()
-c.registro()
+c1 = Classe(1,"A")
+c2 = Classe(2,"A")
+c3 = Classe(3,"A")
+c4 = Classe(4,"A")  
