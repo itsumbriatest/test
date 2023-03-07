@@ -131,16 +131,17 @@ class Registro:
         voto = Voto(studente, materia, punteggio, data)
         classe.voti.append(voto)
 
-        def media_classe_max(self):
-            maxc=self.classi[0].media_classe()
-            maxn=str(self.classi[0])
-            #for c in self.classi:
-            for i in range(len(self.classi)):
-                c = self.classi[i]
-                media=c.media_classe()
-                if maxc<media:
-                    maxc=media
-                    maxn=str(c)
+    def media_classe_max(self):
+        maxc=self.classi[0].media_classe()
+        maxn=str(self.classi[0])
+        #for c in self.classi:
+        for i in range(len(self.classi)):
+            c = self.classi[i]
+            media=c.media_classe()
+            if maxc<media:
+                maxc=media
+                maxn=str(c)
+        print("La classe con media maggiore è: ",maxn," e la sua media è: ",maxc)
 
 # Main
 m1 = Materia("Italiano")
