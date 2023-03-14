@@ -1,8 +1,10 @@
 import random
 
 def mostra_oggetti(oggetti):
-	for i, o in enumerate(oggetti):
+	i = 0
+	for o in oggetti:
 		print(i, o)
+		i += 1
 
 class Giocatore:
 	def __init__(self, nome, anno, forza):
@@ -21,7 +23,10 @@ class Squadra:
 		self.giocatori = giocatori
 	
 	def forza_media(self):
-		return sum(g.forza for g in self.giocatori) / len(self.giocatori)
+		somma = 0
+		for g in self.giocatori:
+			somma += g.forza
+		return somma / len(self.giocatori)
 
 	def __str__(self):
 		return self.nome
@@ -58,8 +63,9 @@ class Campionato:
 		s = int(input("Squadra? "))
 		mostra_oggetti(self.squadre[s].giocatori)
 		g = int(input("Giocatore? "))
-		self.squadre[s].giocatori[g].nome = input("Nuovo nome? ")
-		self.squadre[s].giocatori[g].anno = int(input("Nuovo anno di nascita? "))
+		giocatore = self.squadre[s].giocatori[g]
+		giocatore.nome = input("Nuovo nome? ")
+		giocatore.anno = int(input("Nuovo anno di nascita? "))
 
 	def modifica_forza_calciatore(self):
 		mostra_oggetti(self.squadre)
