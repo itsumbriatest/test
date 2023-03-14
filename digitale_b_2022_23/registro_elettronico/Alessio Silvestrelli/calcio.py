@@ -93,9 +93,6 @@ class campionato:
             print("pareggio!")
 
 
-
-
-
 class squadra:
     def __init__(self, nome, presidente, allenatore, giocatori):
         self.nome=nome
