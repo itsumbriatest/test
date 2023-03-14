@@ -1,0 +1,31 @@
+def mostra_lista(oggetti):
+    i = 0;
+    for o in oggetti:
+        print(i, o)
+        i += 1
+
+class Calciatore:
+    def __init__(self, nome, nascita, forza):
+        self.nome = nome
+        self.nascita = nascita
+        self.forza = forza
+
+class Squadra:
+    def __init__(self, squadra, presidente, allenatore):
+        self.squadra = squadra
+        self.presidente = presidente
+        self.allenatore = allenatore
+    
+    def __str__(self):
+        frase = self.squadra+self.presidente+self.allenatore
+        return frase
+
+class Campionato:
+    def __init__(self, squadra):
+        self.squad = squadra
+
+    
+sq = Squadra("a","c","a")
+print(sq)
+
+
