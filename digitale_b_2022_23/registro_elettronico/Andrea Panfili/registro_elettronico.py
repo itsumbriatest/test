@@ -1,3 +1,31 @@
+def mostra_lista(oggetti):
+    i = 0
+    for o in oggetti:
+        print(i, o)
+        i += 1
+
+class Studente:
+    def __init__(self, nome, cognome):
+        self.nome = nome
+        self.cognome = cognome
+    
+    def __str__(self):
+        return self.cognome + " " + self.nome
+
+class Materia:
+    def __init__(self, nome):
+        self.nome = nome
+    
+    def __str__(self):
+        return self.nome
+
+class Voto:
+    def __init__(self, studente, materia, punteggio, data):
+        self.studente = studente
+        self.materia = materia
+        self.punteggio = punteggio
+        self.data = data
+
 class Classe:
     def __init__(self, grado, sezione, materie, studenti, voti):
         self.grado = grado
@@ -5,81 +33,104 @@ class Classe:
         self.materie = materie
         self.studenti = studenti
         self.voti = voti
-class Registro: 
-        def __init__(self, classi):
-            self.classi = classi
-             
-            s1 = Studente ("Andrea", "Panfili")
-            s2 = Studente ("Massi", "Muzi")
-            self.lista_studenti_classe1 = [andrea, massi]
-
-            italiano = Materia ("Italiano")
-            matematica = Materia ("Matematica")
-            self.lista_materie_classe1 = [italiano, matematica]
-
-            v1 = Voto (7, s1, italiano, "17/2/2023")
-            v2 = Voto (4, s1, matematica, "11/2/2023")
-            v3 = Voto (9, s2, italiano, "17/2/2023")
-            v4 = Voto (6, s2, matematica, "11/2/2023")
-            self.lista_voti_classe1 = [v1, v2, v3, v4]
-        
-      
-        
-            s3 = Studente ("Lorenzo", "Scianca")
-            s4 = Studente ("Tommaso", "Sabbi")
-        #self.lista_studenti_classe2 = [lorenzo, tommaso]
-        #
-        #storia = Materia ("Storia")
-        #scienze = Materia ("Scienze")
-        #self.lista_materie_classe2 = [storia, scienze]
-        #
-        #v5 = Voto (5, lorenzo, italiano, "17/2/2023")
-        #v6 = Voto (3, lorenzo, matematica, "11/2/2023")
-        #v7 = Voto (8, tommaso, italiano, "17/2/2023")
-        #v8 = Voto (10, tommaso, matematica, "11/2/2023")
-
-
-
-        def AggiungiVoto(self):
-            for i in range(len(self.lista_studenti_classe1)):
-                print(i, ")", self.lista_studenti_classe1[i])
-            nome_stud = int(input("Di quale studente vuoi inserire il nuovo voto?"))
-            stud = self.lista_materie_classe1[nome_stud]
-
-            for i in range(len(self.lista_materie_classe1)):
-                print(i, ")", self.lista_materie_classe1[i])
-            nome_mat = int(input("Di quale materia vuoi inserire il nuovo voto?"))
-            mat = self.lista_materie_classe1[nome_mat]
-
-            data = input("Inserisci la data del voto: ")
-            punteggio = float(input("Inserire il punteggio del voto: "))
-            voto = Voto(punteggio, stud, mat, data)
-
-            self.lista_voti_classe1.append(voto)
-
-
     
-          
+    def __str__(self):
+        return str(self.grado) + self.sezione
+        #return f"{self.grado}{self.sezione}"
+    
+    def media_studente(self, studente):
+        somma = 0
+        conta = 0
+        for v in self.voti:
+            if v.studente == studente:
+                somma += v.punteggio
+                conta += 1
+        return somma / conta
+    
+    def media_materia(self, materia):
+        somma = 0
+        conta = 0
+        for v in self.voti:
+            if v.materia == materia:
+                somma += v.punteggio
+                conta += 1
+        return somma / conta
 
+class Registro:
+    def __init__(self, classi):
+        self.classi = classi
+    
+    def menu(self):
+        scelta = ""
+        while scelta != "5":
+            print("1) Inserisci voto")
+            print("2) Media studente")
+            print("3) Media materia")
+            print("4) Classe migliore")
+            print("5) Esci")
+            scelta = input("Scelta: ")
+            if scelta == "1":
+                self.inserisci_voto()
+            elif scelta == "2":
+                self.media_studente()
+            elif scelta == "3":
+                self.media_materia()
+    
+    def media_studente(self):
+        # Scelgo la classe
+        mostra_lista(self.classi)       # <------
+        c = int(input("Quale classe? "))
+        classe = self.classi[c]
+        # Scelgo lo studente
+        mostra_lista(classe.studenti)   # <------
+        s = int(input("Quale studente?"))
+        studente = classe.studenti[s]
+        media = classe.media_studente(studente)
+        print("Media:", media)
+    
+    def media_materia(self):
+        # Scelgo la classe
+        mostra_lista(self.classi)       # <------
+        c = int(input("Quale classe? "))
+        classe = self.classi[c]
+        # Scelgo la materia
+        mostra_lista(classe.materie)    # <------
+        m = int(input("Quale materia? "))
+        materia = classe.materie[m]
+        media = classe.media_materia(materia)
+        print("Media:", media)
+    
+    def inserisci_voto(self):
+        # Scelgo la classe
+        mostra_lista(self.classi)       # <------
+        c = int(input("Quale classe? "))
+        classe = self.classi[c]
+        # Scelgo la materia
+        mostra_lista(classe.materie)    # <------
+        m = int(input("Quale materia? "))
+        materia = classe.materie[m]
+        # Scelgo lo studente
+        mostra_lista(classe.studenti)   # <------
+        s = int(input("Quale studente?"))
+        studente = classe.studenti[s]
+        # Voto e data
+        punteggio = float(input("Quale voto? "))
+        data = input("Quale data? ")
+        voto = Voto(studente, materia, punteggio, data)
+        classe.voti.append(voto)
 
-
-class Studente:
-    #attributo nome e cognome
-    def __init__(self, nome, cognome):
-        self.nome = nome
-        self.cognome = cognome
-        
-class Materia:
-    #attributo nome
-    def __init__(self, nome):
-        self.nome = nome
-
-
-class Voto:
-    def __init__(self, punteggio, studente, materia, data) -> None:
-        self.punteggio = punteggio
-        self.studente = studente
-        self.materia = materia
-        self.data = data
-        
-        
+# Main
+m1 = Materia("Italiano")
+m2 = Materia("Matematica")
+s1 = Studente("Paolo", "Bernardi")
+s2 = Studente("Piero", "Brandola")
+s3 = Studente("Antonio", "Gramsci")
+s4 = Studente("Napoleone", "Bonaparte")
+v1 = Voto(s1, m1, 7, "2023-03-06")
+v2 = Voto(s2, m2, 5.5, "2023-03-07")
+v3 = Voto(s3, m1, 6, "2023-03-01")
+v4 = Voto(s4, m1, 4, "2023-01-16")
+c1 = Classe(1, "A", [m1, m2], [s1, s2], [v1, v2])
+c2 = Classe(2, "B", [m1, m2], [s3, s4], [v3, v4])
+r = Registro([c1, c2])
+r.menu()
