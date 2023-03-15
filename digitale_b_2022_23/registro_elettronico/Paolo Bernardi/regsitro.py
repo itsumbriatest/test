@@ -1,54 +1,54 @@
-def mostra_lista(oggetti):
-    i = 0
-    for o in oggetti:
-        print(i, o)
-        i += 1
+from datetime import*
 
+class Appuntamento:
+    def _init_(self, descrizione, data_ora, ricorrenza):
+        self.descrizione = descrizione
+        self.data_ora = data_ora
+        self.ricorrenza = ricorrenza
 
-class Squadra:
-    def _init_(self, nome, allenatore, presidente, calciatore1, calciatore2):
-        self.nome = nome
-        self.allenatore = allenatore
-        self.presidente = presidente
-        self.calciatore1 = calciatore1
-        self.calciatore2 = calciatore2
-    
     def _str_(self):
-        return self.nome + " " + self.allenatore + " " + self.presidente + " " + self.calciatore1 + " " + self.calciatore2
+	    return self.descrizione + self.data_ora.strftime("%Y-%m-%d %H:%M:%S") + self.ricorrenza      
 
-    def cambiaNome(self, nome):
+class Invitati:
+    def _init_(self, nome, cognome, email):
         self.nome = nome
+        self.cognome = cognome
+        self.email = email
 
-class Campionato:
-    def _init_(self, squadra, partita):
-        self.squadra = squadra
-        self.partita = partita
-
-class Calciatore:
-    def _init_(self, nome, anno, forza):
-        self.nome = nome 
-        self.anno = anno 
-        self.forza = forza
-    
     def _str_(self):
-        return self.nome + " " + str(self.anno) + " " + str(self.forza)
+        return f"{self.nome}, {self.cognome}, {self.email}"
+class Agenda:
+    def _init_(self, appuntamento):
+        self.appuntamento = appuntamento
 
-    def cambiaAnagrafica(self, nome, anno):
-        self.nome = nome
-        self.anno = anno
+    def menu(self):
+        scelta = ""
+        while scelta != "6":
+            print("1) Inserisci l'apputamento")
+            print("2) Modificare la descrizione, la data, l'ora e la ricorrenza di un appuntamento")
+            print("3) Aggiungere un invitato ad un appuntamento")
+            print("4) Rimuovere un invitato da un appuntamento")
+            print("5) Cancellare un appuntamento")
+            print("6) Esci")
+            scelta = input("Scelta? ")
+            if scelta == "1":
+                self.modifica_nome_squadra()
+            elif scelta == "2":
+                self.modifica_anagrafica_calciatore()
+            elif scelta == "3":
+                self.modifica_forza_calciatore()
+            elif scelta == "4":
+                self.simula_partita()
+            elif scelta =="5":
+                pass
 
-    def cambiaForza (self, forza):
-        if self.forza >= 100 and self.forza <= 0:
-            self.forza = forza
+    def inserisci_appuntramento(self):
+        i = input ("inserisci invitato: ")
+        inv = self.invitati[i]
+        d = input ("aggiungi descrizione: ")
+        des = self.invitati[d]
+        do = input ("inserisci data e ora (y-m-d H:M:S): ")
+        dtor = self.dat_ora[do]
+        r = input ("inserisci riccorenza: ")
+        ric = self.riccorenza[r]
 
-
-#main
-
-Roma = Squadra("Roma", "Giorgio", "Magella", "Silvio", "Luca")
-Terni = Squadra("Frosinone", "San Basilio", "Marotti", "Gigi", "Ugo")
-print(Roma)
-g1 = Calciatore("Marco", 1997, 60)
-g1.cambiaAnagrafica("Luca", 1700)
-print(g1)
-g1.cambiaForza(90)
-print(g1)
