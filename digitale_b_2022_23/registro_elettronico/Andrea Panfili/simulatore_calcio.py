@@ -13,7 +13,7 @@ class Campionato:
 
     def menu(self):
         scelta = ""
-        while scelta != "5":
+        while scelta != "6":
             print("1) Modifica nome squadra")
             print("2) Modifica nome calciatore")
             print("3) Modifica anno calciatore")
