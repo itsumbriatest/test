@@ -92,9 +92,9 @@ class Agenda:
     
     def aggiungi_nuovo_invitato(self):
         mostra_oggetti(self.listAp)
-        nom = input("Inserisci nome: ")
-        cogn = input("Inserisci cognome: ")
-        mail = input("Inserisci mail: ")
+        nom = input("nome: ")
+        cogn = input("cognome: ")
+        mail = input("mail: ")
         inv = Invitati(nom, cogn, mail)
         self.listAp.append(inv)
         
