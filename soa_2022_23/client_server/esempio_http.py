@@ -1,4 +1,4 @@
-# pip install requests
+# pip install request
 import requests
 url = "http://ipinfo.io"
 response = requests.get(url)
