@@ -4,6 +4,7 @@ class Classe:
         self.lista_materie = lista_materie
         self.lista_studenti = lista_studenti
         self.lista_voti = lista_voti
+
     def inserisci_voto(self):
         i = 0
         voto = input("Inserisci un voto: ")
@@ -18,6 +19,7 @@ class Classe:
         studente = input("Inserisci numero studente: ")
         v = Voto(int(voto), self.lista_materie[int(materia)], "data", self.lista_studenti[int(studente)])
         self.lista_voti.append(v)
+
     def media_singolo_studente(self):
         i = 0
         for studente in self.lista_studenti:
@@ -32,6 +34,7 @@ class Classe:
                 contatore = contatore + 1
         media = somma/contatore
         print("La media è", media)
+        
     def media_materia(self):
         i = 0
         for materia in self.lista_materie:
