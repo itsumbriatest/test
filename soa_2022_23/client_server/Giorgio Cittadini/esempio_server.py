@@ -12,8 +12,8 @@ def secondo_test():
 @route("/test3")
 def secondo_test():
     my_dizionario = {
-        "nome": "Antonio", 
-        "cognome": "Asciolla"
+        "nome": "Giorgio", 
+        "cognome": "Cittadini"
     }
     return my_dizionario
 
