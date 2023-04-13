@@ -15,7 +15,7 @@ def check_login(username, password):
     cur = con.cursor()
     query = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
     print("QUERY:", query)
-    try:
+    try:    
         cur.execute(query)
         rows = cur.fetchall()
     except:
