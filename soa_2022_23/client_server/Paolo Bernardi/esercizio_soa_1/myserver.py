@@ -11,6 +11,7 @@ def login():
         login_ok = True
         return "OK"
     else:
+        login_ok = False
         return "KO"
 
 @route("/anagrafica")
