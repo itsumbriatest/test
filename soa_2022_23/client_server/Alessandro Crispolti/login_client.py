@@ -1,4 +1,5 @@
 import requests
+import json
 
 # 1. Login
 user = input("Nome utente: ")
@@ -19,6 +20,11 @@ url = "http://127.0.0.1:8080/anagrafica"
 response = requests.get(url)
 if response.status_code == 200:
     content = response.content.decode()
-    print(content)
+    if content != "":
+        dizionario = json.loads(content)
+        print(dizionario["nome"], dizionario["cognome"])
+        print("Nato il ", dizionario["nascita"])
+    else:
+        print("Non autorizzato! Attenzione")
 else:
     print("Errore durante la richiesta HTTP anagrafica")
