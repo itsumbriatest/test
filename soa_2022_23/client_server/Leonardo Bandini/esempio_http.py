@@ -1,4 +1,3 @@
-# pip install request
 import requests
 url = "http://127.0.0.1:8080/test3"
 response = requests.get(url)
