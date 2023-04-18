@@ -1,5 +1,6 @@
 # pip install request
 import requests
+import json
 username = input("Inserisci l'username: ")
 password = input("Inserisci la password: ")
 
@@ -20,6 +21,9 @@ url = f"http://127.0.0.1:8080/Anagrafica"
 response = requests.get(url)
 if response.status_code == 200:
     content = response.content.decode()
-    print(content)
+    if content != "":
+        dizionario = json.loads("cognome")
+        print(dizionario["nome"], dizionario["cognome"])
+        print("Nato il, ", dizionario["nascita"])
 else:
-    print("Errore durante la richiesta HTTP Anagrafica")
+    print("Unauthorized!!! ACHTUNG!!!")
