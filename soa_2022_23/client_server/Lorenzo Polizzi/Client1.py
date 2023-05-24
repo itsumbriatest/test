@@ -8,7 +8,6 @@ if response.status_code == 200:
     content = response.content.decode()
     if content == "OK":
         print("Login effettuata")
-
     else:
         print("Username o password sbagliate")
 else:
