@@ -69,4 +69,19 @@ def inserisci_giocatore():
             return squadra.inserisci_giocatore(g)
     return "ERRORE: squadra non trovata"
 
+@route("/lista_squadre")
+def lista_squadre():
+    global lista_squadre
+    return ", ".join([str(s) for s in lista_squadre])
+
+@route("/lista_giocatori")
+def lista_giocatori():
+    global lista_squadre
+    params = request.query.decode()
+    nome_squadra = params["nome_squadra"]
+    for squadra in lista_squadre:
+        if squadra.nome == nome_squadra:
+            return ", ".join([str(g) for g in squadra.giocatori])
+    return "ERRORE: squadra non trovata"
+
 httpserver.serve(default_app(), host="127.0.0.1", port=8080)
