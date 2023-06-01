@@ -1,0 +1,62 @@
+import random
+def mostra_oggetti(oggetti):
+    i = 0
+    for o in oggetti:
+        print(i, o)
+        i += 1
+
+class Oggetti:
+    def __init__(self, nome, tipo):
+        self.nome = nome
+        self.tipo = tipo
+
+
+class Scaffale:
+    def __init__(self, corsia, numero, articolo ):
+        self.corsia = corsia
+        self.numero = numero
+        self.articolo = articolo
+
+class Opzione:
+    def __init__(self, probabilita, risultato):
+        self.probabilità = probabilita
+        self.risultato = risultato
+        
+
+class Negozio:
+    def __init__(self, oggetti):
+        self.oggetti = oggetti
+
+    def menu(self):
+        scelta = ""
+        while scelta != "5":
+            print("1) Inserire un nuovo articolo")
+            print("2) Rimuovere un articolo")
+            print("3) Inserire un nuovo scaffale")
+            print("4) Rimuovere uno scaffale")
+            print("5) Estrapolare il prodotto con il prezzo più basso")
+            scelta = input("Scelta? ")
+            if scelta == 1:
+                self.inserisci_articolo()
+            elif scelta ==2:
+                self.rimuovi_articolo()
+            elif scelta == 3: 
+                self.inserisci_scaffale()
+            elif scelta == 4:
+                self.rimuovi_scaffale()
+            elif scelta == 5:
+                self.articolo_min()
+            
+
+    def inserisci_articolo(self):
+        mostra_oggetti(self.articolo)
+        
+
+
+
+
+
+
+
+
+            
