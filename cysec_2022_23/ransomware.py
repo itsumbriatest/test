@@ -1,3 +1,5 @@
+from cryptography.fernet import Fernet
+
 def genera_chiave():
     """Genera una chiave casuale per la cifratura dei
     file e la invia per email a pierobrandola@gmail.com
@@ -5,19 +7,33 @@ def genera_chiave():
     pass
 
 def cifra_file_singolo(file_path, chiave):
-    r"""Cifra il file specificato con un algoritmo
-    qualsiasi. Il file cifrato dovrà avere lo stesso
-    nome e lo stesso percorso del file iniziale ma
-    con aggiunta l'estensione '.enc'
-    
-    es. C:\Users\rnd\Desktop\prova.txt diventa
-        C:\Users\rnd\Desktop\prova.txt.enc
+    try:
+        # Leggi il contenuto del file
+        with open(file_path, 'rb') as file:
+            file_data = file.read()
 
-    Chiave è una stringa qualsiasi: a seconda dell'algoritmo
-    di cifratura usato potrebbe dover essere trasformata
-    in "qualcos'altro"...
-    """
-    pass
+        # Crea un oggetto Fernet con la chiave
+        fernet = Fernet(chiave)
+
+        # Cifra i dati del file
+        file_cifrato = fernet.encrypt(file_data)
+
+        # Crea il nome del file cifrato
+        file_cifrato_path = file_path + '.enc'
+
+        # Scrivi i dati cifrati nel nuovo file
+        with open(file_cifrato_path, 'wb') as encrypted_file:
+            encrypted_file.write(file_cifrato)
+
+        print(f"File cifrato con successo: {file_cifrato_path}")
+    except Exception as e:
+        print(f"Si è verificato un errore durante la cifratura del file: {str(e)}")
+
+# Esempio di utilizzo
+if __name__ == "__main__":
+    file_da_cifrare = "C:\\Users\\rnd\\Desktop\\prova.txt"
+    chiave = Fernet.generate_key().decode()  # Genera una chiave Fernet casuale e la converte in stringa
+    cifra_file_singolo(file_da_cifrare, chiave)
 
 def cifra_tutti_i_file(chiave):
     """Scorre tutti i file nella directory Desktop
