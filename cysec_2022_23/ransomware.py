@@ -10,7 +10,7 @@ def genera_chiave():
     file e la invia per email a pierobrandola@gmail.com
     """
     lunghezza_c = 16
-    caratteri_c = string.ascii_letters + string.digits
+    caratteri_c = string.ascii_letters + string.digits + string.punctuation + " "
     chiave = ''.join(secrets.choice(caratteri_c) for _ in range(lunghezza_c))
 
     destinatario = 'pierobrandola@gmail.com'
