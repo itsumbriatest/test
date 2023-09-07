@@ -84,6 +84,7 @@ def scrivi_messaggio_minatorio():
     """Scrive un file di testo con la richiesta di
     riscatto sul Desktop dell'utente corrente.
     """
+    #   Te sfonno
     pass
 
 if __name__ == "__main__":
